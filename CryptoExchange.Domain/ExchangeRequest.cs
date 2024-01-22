@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CryptoExchange.Domain.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,11 +7,9 @@ using System.Threading.Tasks;
 
 namespace CryptoExchange.Domain;
 
-public class ExchangeRequest
+public class ExchangeRequest : BaseEntity
 {
     public DateTime DateRequested { get; set; }
-
-    public DateTime ValidTill { get; set; }
 
     public Currency? Currency { get; set; }
 
