@@ -83,8 +83,8 @@ namespace CryptoExchange.Persistence.Migrations
                 columns: new[] { "Id", "DateCreated", "DateModified", "Name" },
                 values: new object[,]
                 {
-                    { 1, null, null, "USDT" },
-                    { 2, null, null, "BTC" }
+                    { 1, new DateTime(2024, 1, 23, 18, 36, 51, 487, DateTimeKind.Utc).AddTicks(6346), new DateTime(2024, 1, 23, 18, 36, 51, 487, DateTimeKind.Utc).AddTicks(6381), "USDT" },
+                    { 2, new DateTime(2024, 1, 23, 18, 36, 51, 487, DateTimeKind.Utc).AddTicks(6384), new DateTime(2024, 1, 23, 18, 36, 51, 487, DateTimeKind.Utc).AddTicks(6384), "BTC" }
                 });
 
             migrationBuilder.CreateIndex(

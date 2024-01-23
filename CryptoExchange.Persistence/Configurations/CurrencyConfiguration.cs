@@ -17,12 +17,16 @@ namespace CryptoExchange.Persistence.Configurations
                 new Currency
                 {
                     Id = 1,
-                    Name = "USDT"
+                    Name = "USDT",
+                    DateCreated = DateTime.Now.ToUniversalTime(),
+                    DateModified = DateTime.Now.ToUniversalTime()
                 },
                 new Currency
                 {
                     Id = 2,
-                    Name = "BTC"
+                    Name = "BTC",
+                    DateCreated = DateTime.Now.ToUniversalTime(),
+                    DateModified = DateTime.Now.ToUniversalTime()
                 }
             );
 

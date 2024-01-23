@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CryptoExchange.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240123182354_InitialMigration")]
+    [Migration("20240123183651_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -52,11 +52,15 @@ namespace CryptoExchange.Persistence.Migrations
                         new
                         {
                             Id = 1,
+                            DateCreated = new DateTime(2024, 1, 23, 18, 36, 51, 487, DateTimeKind.Utc).AddTicks(6346),
+                            DateModified = new DateTime(2024, 1, 23, 18, 36, 51, 487, DateTimeKind.Utc).AddTicks(6381),
                             Name = "USDT"
                         },
                         new
                         {
                             Id = 2,
+                            DateCreated = new DateTime(2024, 1, 23, 18, 36, 51, 487, DateTimeKind.Utc).AddTicks(6384),
+                            DateModified = new DateTime(2024, 1, 23, 18, 36, 51, 487, DateTimeKind.Utc).AddTicks(6384),
                             Name = "BTC"
                         });
                 });
