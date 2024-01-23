@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using CryptoExchange.Application.Features.Currency.Commands.CreateCurrency;
 using CryptoExchange.Application.Features.Currency.Queries.GetAllCurrencies;
 using CryptoExchange.Application.Features.Currency.Queries.GetCurrencyDetails;
 using CryptoExchange.Domain;
@@ -16,6 +17,7 @@ namespace CryptoExchange.Application.MappingProfiles
         {
             CreateMap<CurrencyDto, Currency>().ReverseMap();
             CreateMap<Currency, CurrencyDetailsDto>();
+            CreateMap<CreateCurrencyCommand, Currency>();
         }
     }
 }

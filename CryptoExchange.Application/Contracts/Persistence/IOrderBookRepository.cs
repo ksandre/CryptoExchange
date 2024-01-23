@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace CryptoExchange.Application.Contracts.Persistence
 {
-    public interface IOrderBookRepository: IGenericRepository<OrderBook>
+    public interface IOrdersRepository: IGenericRepository<Order>
     {
-        Task<OrderBook> GetOrderBookWithDetails(int id);
-        Task<List<OrderBook>> GetOrderBooksWithDetails();
-        Task<List<OrderBook>> GetOrderBooksWithDetails(string userId);
-        Task<bool> OrderBookExists(string userId, int leaveTypeId, int period);
-        Task AddOrderBooks(List<OrderBook> orderBooks);
-        Task<OrderBook> GetUserOrderBooks(string userId, int leaveTypeId);
+        Task<Order> GetOrderWithDetails(int id);
+        Task<List<Order>> GetOrdersWithDetails();
+        Task<List<Order>> GetOrdersWithDetails(string userId);
+        Task<bool> OrderExists(string userId, int currencyId);
+        Task AddOrders(List<Order> orders);
+        Task<Order> GetUserOrders(string userId, int currencyId);
     }
 }

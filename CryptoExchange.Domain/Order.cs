@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CryptoExchange.Domain;
 
-public class OrderBook: BaseEntity
+public class Order: BaseEntity
 {
     public int Amount { get; set; }
 
