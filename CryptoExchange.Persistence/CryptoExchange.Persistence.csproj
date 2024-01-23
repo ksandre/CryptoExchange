@@ -20,9 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CryptoExchange.Api\CryptoExchange.Api.csproj" />
     <ProjectReference Include="..\CryptoExchange.Application\CryptoExchange.Application.csproj" />
-    <ProjectReference Include="..\CryptoExchange.Domain\CryptoExchange.Domain.csproj" />
   </ItemGroup>
 
 </Project>
