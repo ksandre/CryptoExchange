@@ -1,7 +1,7 @@
 using CryptoExchange.Application;
 using CryptoExchange.Infrastructure;
 using CryptoExchange.Persistence;
-
+using CryptoExchange.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddPersistenceServices(builder.Configuration);
+builder.Services.AddIdentityServices(builder.Configuration);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

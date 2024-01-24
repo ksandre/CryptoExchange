@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoExchange.Persistence"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoExchange.Api", "CryptoExchange.Api\CryptoExchange.Api.csproj", "{A70FFE5C-8933-4E82-8D9B-DED4A7B8430D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoExchange.Infrastructure", "CryptoExchange.Infrastructure\CryptoExchange.Infrastructure.csproj", "{C6A4036F-02F0-41C4-BDED-F7B2992D0087}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoExchange.Infrastructure", "CryptoExchange.Infrastructure\CryptoExchange.Infrastructure.csproj", "{C6A4036F-02F0-41C4-BDED-F7B2992D0087}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoExchange.Identity", "CryptoExchange.Identity\CryptoExchange.Identity.csproj", "{8F921EEF-FE79-45E1-ADD1-EB21CDE4CFE5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +49,10 @@ Global
 		{C6A4036F-02F0-41C4-BDED-F7B2992D0087}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6A4036F-02F0-41C4-BDED-F7B2992D0087}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C6A4036F-02F0-41C4-BDED-F7B2992D0087}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F921EEF-FE79-45E1-ADD1-EB21CDE4CFE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F921EEF-FE79-45E1-ADD1-EB21CDE4CFE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F921EEF-FE79-45E1-ADD1-EB21CDE4CFE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F921EEF-FE79-45E1-ADD1-EB21CDE4CFE5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,6 +63,7 @@ Global
 		{FE67EF91-A549-4D0C-8D94-DFE2AF71EF7C} = {6C471220-F6DD-4FC0-AC37-721B87845893}
 		{A70FFE5C-8933-4E82-8D9B-DED4A7B8430D} = {800303B3-AD89-4FB0-8DB4-0A612C18E07D}
 		{C6A4036F-02F0-41C4-BDED-F7B2992D0087} = {6C471220-F6DD-4FC0-AC37-721B87845893}
+		{8F921EEF-FE79-45E1-ADD1-EB21CDE4CFE5} = {6C471220-F6DD-4FC0-AC37-721B87845893}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AE60CA1D-3AC4-46FA-890C-5987C7C1ACC2}
