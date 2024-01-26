@@ -1,4 +1,9 @@
-﻿using MediatR;
+﻿using CryptoExchange.Application.Features.ExchangeRequest.Commands.CreateExchangeRequest;
+using CryptoExchange.Application.Features.ExchangeRequest.Commands.DeleteExchangeRequest;
+using CryptoExchange.Application.Features.ExchangeRequest.Commands.UpdateExchangeRequest;
+using CryptoExchange.Application.Features.ExchangeRequest.Queries.GetExchangeRequestDetail;
+using CryptoExchange.Application.Features.ExchangeRequest.Queries.GetExchangeRequestList;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -18,34 +23,53 @@ namespace CryptoExchange.Api.Controllers
 
         // GET: api/<ExchangeRequestsController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<ActionResult<List<ExchangeRequestListDto>>> Get(bool isLoggedInUser = false)
         {
-            return new string[] { "value1", "value2" };
+            var leaveRequests = await _mediator.Send(new GetExchangeRequestListQuery());
+            return Ok(leaveRequests);
         }
 
         // GET api/<ExchangeRequestsController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<ActionResult<ExchangeRequestDetailsDto>> Get(int id)
         {
-            return "value";
+            var leaveRequest = await _mediator.Send(new GetExchangeRequestDetailQuery { Id = id });
+            return Ok(leaveRequest);
         }
 
         // POST api/<ExchangeRequestsController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        [ProducesResponseType(201)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult> Post(CreateExchangeRequestCommand exchangeRequest)
         {
+            var response = await _mediator.Send(exchangeRequest);
+            return CreatedAtAction(nameof(Get), new { id = response });
         }
 
         // PUT api/<ExchangeRequestsController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
+        public async Task<ActionResult> Put(UpdateExchangeRequestCommand exchangeRequest)
         {
+            await _mediator.Send(exchangeRequest);
+            return NoContent();
         }
 
         // DELETE api/<ExchangeRequestsController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
+        public async Task<ActionResult> Delete(int id)
         {
+            var command = new DeleteExchangeRequestCommand { Id = id };
+            await _mediator.Send(command);
+            return NoContent();
         }
     }
 }

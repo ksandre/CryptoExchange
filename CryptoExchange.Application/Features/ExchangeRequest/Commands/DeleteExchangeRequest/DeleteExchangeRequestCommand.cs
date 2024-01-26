@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CryptoExchange.Application.Features.Order.Commands.DeleteOrder
+namespace CryptoExchange.Application.Features.ExchangeRequest.Commands.DeleteExchangeRequest
 {
-    public class DeleteOrderCommand : IRequest<Unit>
+    public class DeleteExchangeRequestCommand : IRequest<Unit>
     {
         public int Id { get; set; }
     }

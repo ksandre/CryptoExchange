@@ -9,14 +9,13 @@ namespace CryptoExchange.Domain;
 
 public class ExchangeRequest : BaseEntity
 {
+    public double Amount { get; set; }
     public DateTime DateRequested { get; set; }
 
     public Currency? Currency { get; set; }
-
     public int CurrencyTypeId { get; set; }
 
     public string? Comments { get; set; }
-
     public bool? Approved { get; set; }
     public bool Cancelled { get; set; }
     public string RequestingEmployeeId { get; set; } = string.Empty;

@@ -18,11 +18,4 @@
     <ProjectReference Include="..\CryptoExchange.Domain\CryptoExchange.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\ExchangeRequest\Commands\" />
-    <Folder Include="Features\ExchangeRequest\Queries\" />
-    <Folder Include="Features\Order\Queries\GetOrders\" />
-    <Folder Include="Features\Order\Queries\GetOrderDetails\" />
-  </ItemGroup>
-
 </Project>

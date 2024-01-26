@@ -4,6 +4,7 @@ using CryptoExchange.Application.Features.Currency.Commands.UpdateCurrency;
 using CryptoExchange.Application.Features.Currency.Queries.GetAllCurrencies;
 using CryptoExchange.Application.Features.Currency.Queries.GetCurrencyDetails;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -12,6 +13,7 @@ namespace CryptoExchange.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CurrenciesController : ControllerBase
     {
         private readonly IMediator _mediator;

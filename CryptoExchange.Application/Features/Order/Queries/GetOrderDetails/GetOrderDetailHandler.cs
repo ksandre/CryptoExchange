@@ -8,29 +8,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CryptoExchange.Application.Features.Order.Commands.DeleteOrder
+namespace CryptoExchange.Application.Features.Order.Queries.GetOrderDetails
 {
-    public class DeleteOrderCommandHandler : IRequestHandler<DeleteOrderCommand, Unit>
+    public class GetOrderDetailHandler : IRequestHandler<GetOrderDetailQuery, OrderDetailsDto>
     {
         private readonly IOrdersRepository _ordersRepository;
         private readonly IMapper _mapper;
 
-        public DeleteOrderCommandHandler(IOrdersRepository ordersRepository, IMapper mapper)
+        public GetOrderDetailHandler(IOrdersRepository ordersRepository, IMapper mapper)
         {
             _ordersRepository = ordersRepository;
             _mapper = mapper;
         }
 
-        public async Task<Unit> Handle(DeleteOrderCommand request, CancellationToken cancellationToken)
+        public async Task<OrderDetailsDto> Handle(GetOrderDetailQuery request, CancellationToken cancellationToken)
         {
-            var order = await _ordersRepository.GetByIdAsync(request.Id);
-
+            var order = await _ordersRepository.GetOrderWithDetails(request.Id);
             if (order == null)
                 throw new NotFoundException(nameof(Order), request.Id);
 
-            await _ordersRepository.DeleteAsync(order);
-
-            return Unit.Value;
+            return _mapper.Map<OrderDetailsDto>(order);
         }
     }
 }

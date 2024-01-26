@@ -1,4 +1,5 @@
-﻿using CryptoExchange.Domain;
+﻿using CryptoExchange.Application.Contracts.Identity;
+using CryptoExchange.Domain;
 using CryptoExchange.Domain.Common;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -11,9 +12,11 @@ namespace CryptoExchange.Persistence.DatabaseContext
 {
     public class AppDbContext: DbContext
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options): base(options)
+        private readonly IUserService _userService;
+
+        public AppDbContext(DbContextOptions<AppDbContext> options, IUserService userService) : base(options)
         {
-            
+            _userService = userService;
         }
 
         public DbSet<Currency> Currencies { get; set; }
@@ -32,11 +35,11 @@ namespace CryptoExchange.Persistence.DatabaseContext
                 .Where(q => q.State == EntityState.Added || q.State == EntityState.Modified))
             {
                 entry.Entity.DateModified = DateTime.Now;
-                //entry.Entity.ModifiedBy = _userService.UserId;
+                entry.Entity.ModifiedBy = _userService.UserId;
                 if (entry.State == EntityState.Added)
                 {
                     entry.Entity.DateCreated = DateTime.Now;
-                    //entry.Entity.CreatedBy = _userService.UserId;
+                    entry.Entity.CreatedBy = _userService.UserId;
                 }
             }
 

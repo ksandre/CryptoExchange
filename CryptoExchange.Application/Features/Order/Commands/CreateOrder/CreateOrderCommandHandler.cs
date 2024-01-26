@@ -45,10 +45,7 @@ namespace CryptoExchange.Application.Features.Order.Commands.CreateOrder
             // Get Employees
             var employees = await _userService.GetEmployees();
 
-            //Get Period
-            var period = DateTime.Now.Year;
-
-            //Assign Orders if an order doesn't already exist for period and currency
+            // Assign Orders if an order doesn't already exist for requested currency
             var orders = new List<Domain.Order>();
             foreach (var emp in employees)
             {

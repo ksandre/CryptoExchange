@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MediatR;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,10 @@ using System.Threading.Tasks;
 
 namespace CryptoExchange.Application.Features.Order.Commands.UpdateOrder
 {
-    internal class UpdateOrderCommand
+    public class UpdateOrderCommand : IRequest<Unit>
     {
+        public int Id { get; set; }
+        public int Amount { get; set; }
+        public int CurrencyId { get; set; }
     }
 }

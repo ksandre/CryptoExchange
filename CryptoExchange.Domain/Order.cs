@@ -9,7 +9,7 @@ namespace CryptoExchange.Domain;
 
 public class Order: BaseEntity
 {
-    public int Amount { get; set; }
+    public double Amount { get; set; }
 
     public Currency? Currency { get; set; }
     public int CurrencyId { get; set; }
