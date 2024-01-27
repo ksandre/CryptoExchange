@@ -22,7 +22,9 @@ namespace CryptoExchange.Persistence.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     DateCreated = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    DateModified = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
+                    CreatedBy = table.Column<string>(type: "text", nullable: true),
+                    DateModified = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    ModifiedBy = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -35,6 +37,7 @@ namespace CryptoExchange.Persistence.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Amount = table.Column<double>(type: "double precision", nullable: false),
                     DateRequested = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     CurrencyId = table.Column<int>(type: "integer", nullable: true),
                     CurrencyTypeId = table.Column<int>(type: "integer", nullable: false),
@@ -43,7 +46,9 @@ namespace CryptoExchange.Persistence.Migrations
                     Cancelled = table.Column<bool>(type: "boolean", nullable: false),
                     RequestingEmployeeId = table.Column<string>(type: "text", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    DateModified = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
+                    CreatedBy = table.Column<string>(type: "text", nullable: true),
+                    DateModified = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    ModifiedBy = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -61,11 +66,13 @@ namespace CryptoExchange.Persistence.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Amount = table.Column<int>(type: "integer", nullable: false),
+                    Amount = table.Column<double>(type: "double precision", nullable: false),
                     CurrencyId = table.Column<int>(type: "integer", nullable: false),
                     EmployeeId = table.Column<string>(type: "text", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    DateModified = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
+                    CreatedBy = table.Column<string>(type: "text", nullable: true),
+                    DateModified = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    ModifiedBy = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -80,11 +87,11 @@ namespace CryptoExchange.Persistence.Migrations
 
             migrationBuilder.InsertData(
                 table: "Currencies",
-                columns: new[] { "Id", "DateCreated", "DateModified", "Name" },
+                columns: new[] { "Id", "CreatedBy", "DateCreated", "DateModified", "ModifiedBy", "Name" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 1, 23, 18, 36, 51, 487, DateTimeKind.Utc).AddTicks(6346), new DateTime(2024, 1, 23, 18, 36, 51, 487, DateTimeKind.Utc).AddTicks(6381), "USDT" },
-                    { 2, new DateTime(2024, 1, 23, 18, 36, 51, 487, DateTimeKind.Utc).AddTicks(6384), new DateTime(2024, 1, 23, 18, 36, 51, 487, DateTimeKind.Utc).AddTicks(6384), "BTC" }
+                    { 1, null, new DateTime(2024, 1, 26, 23, 50, 5, 996, DateTimeKind.Utc).AddTicks(1795), new DateTime(2024, 1, 26, 23, 50, 5, 996, DateTimeKind.Utc).AddTicks(1826), null, "USDT" },
+                    { 2, null, new DateTime(2024, 1, 26, 23, 50, 5, 996, DateTimeKind.Utc).AddTicks(1828), new DateTime(2024, 1, 26, 23, 50, 5, 996, DateTimeKind.Utc).AddTicks(1829), null, "BTC" }
                 });
 
             migrationBuilder.CreateIndex(
