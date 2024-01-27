@@ -28,17 +28,17 @@ namespace CryptoExchange.Application.Features.ExchangeRequest.Queries.GetExchang
             var exchangeRequests = new List<Domain.ExchangeRequest>();
             var requests = new List<ExchangeRequestListDto>();
 
-            // Check if it is logged in employee
+            // Check if it is logged in customer
             if (request.IsLoggedInUser)
             {
                 var userId = _userService.UserId;
                 exchangeRequests = await _exchangeRequestRepository.GetExchangeRequestsWithDetails(userId);
 
-                var employee = await _userService.GetEmployee(userId);
+                var customer = await _userService.GetCustomer(userId);
                 requests = _mapper.Map<List<ExchangeRequestListDto>>(exchangeRequests);
                 foreach (var req in requests)
                 {
-                    req.Employee = employee;
+                    req.Customer = customer;
                 }
             }
             else
@@ -47,7 +47,7 @@ namespace CryptoExchange.Application.Features.ExchangeRequest.Queries.GetExchang
                 requests = _mapper.Map<List<ExchangeRequestListDto>>(exchangeRequests);
                 foreach (var req in requests)
                 {
-                    req.Employee = await _userService.GetEmployee(req.RequestingEmployeeId);
+                    req.Customer = await _userService.GetCustomer(req.RequestingCustomerId);
                 }
             }
 

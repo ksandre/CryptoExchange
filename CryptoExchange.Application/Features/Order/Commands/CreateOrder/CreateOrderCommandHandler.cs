@@ -2,6 +2,7 @@
 using CryptoExchange.Application.Contracts.Identity;
 using CryptoExchange.Application.Contracts.Persistence;
 using CryptoExchange.Application.Exceptions;
+using CryptoExchange.Domain;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -33,39 +34,20 @@ namespace CryptoExchange.Application.Features.Order.Commands.CreateOrder
 
         public async Task<Unit> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
         {
-            var validator = new CreateOrderCommandValidator(_currencyRepository);
+            var validator = new CreateOrderCommandValidator(_currencyRepository,_userService);
             var validationResult = await validator.ValidateAsync(request);
 
             if (validationResult.Errors.Any())
                 throw new BadRequestException("Invalid Order Request", validationResult);
 
-            // Get Currency for Orders
-            var currency = await _currencyRepository.GetByIdAsync(request.CurrencyId);
-
-            // Get Employees
-            var employees = await _userService.GetEmployees();
-
-            // Assign Orders if an order doesn't already exist for requested currency
-            var orders = new List<Domain.Order>();
-            foreach (var emp in employees)
+            var order = new Domain.Order
             {
-                var oderExists = await _ordersRepository.OrderExists(emp.Id, request.CurrencyId);
+                Amount = request.Amount,
+                CurrencyId = request.CurrencyId,
+                CustomerId = request.CustomerId,
+            };
 
-                if (oderExists == false)
-                {
-                    orders.Add(new Domain.Order
-                    {
-                        Amount = request.Amount,
-                        EmployeeId = emp.Id,
-                        CurrencyId = currency.Id
-                    });
-                }
-            }
-
-            if (orders.Any())
-            {
-                await _ordersRepository.AddOrders(orders);
-            }
+            await _ordersRepository.AddOrder(order);
 
             return Unit.Value;
         }

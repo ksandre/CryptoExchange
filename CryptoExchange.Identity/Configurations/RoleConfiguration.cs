@@ -17,8 +17,8 @@ namespace CryptoExchange.Identity.Configurations
                 new IdentityRole
                 {
                     Id = "cac43a6e-f7bb-4448-baaf-1add431ccbbf",
-                    Name = "Employee",
-                    NormalizedName = "EMPLOYEE"
+                    Name = "Customer",
+                    NormalizedName = "CUSTOMER"
                 },
                 new IdentityRole
                 {

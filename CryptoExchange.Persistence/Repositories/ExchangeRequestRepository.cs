@@ -20,7 +20,7 @@ namespace CryptoExchange.Persistence.Repositories
         public async Task<List<ExchangeRequest>> GetExchangeRequestsWithDetails()
         {
             var exchangeRequests = await _context.ExchangeRequests
-                .Where(q => !string.IsNullOrEmpty(q.RequestingEmployeeId))
+                .Where(q => !string.IsNullOrEmpty(q.RequestingCustomerId))
                 .Include(q => q.Currency)
                 .ToListAsync();
 
@@ -30,7 +30,7 @@ namespace CryptoExchange.Persistence.Repositories
         public async Task<List<ExchangeRequest>> GetExchangeRequestsWithDetails(string userId)
         {
             var exchangeRequests = await _context.ExchangeRequests
-                .Where(q => q.RequestingEmployeeId == userId)
+                .Where(q => q.RequestingCustomerId == userId)
                 .Include(q => q.Currency)
                 .ToListAsync();
 

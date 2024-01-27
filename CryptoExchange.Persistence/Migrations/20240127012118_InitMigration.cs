@@ -9,7 +9,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CryptoExchange.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    public partial class InitMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -44,7 +44,7 @@ namespace CryptoExchange.Persistence.Migrations
                     Comments = table.Column<string>(type: "text", nullable: true),
                     Approved = table.Column<bool>(type: "boolean", nullable: true),
                     Cancelled = table.Column<bool>(type: "boolean", nullable: false),
-                    RequestingEmployeeId = table.Column<string>(type: "text", nullable: false),
+                    RequestingCustomerId = table.Column<string>(type: "text", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     CreatedBy = table.Column<string>(type: "text", nullable: true),
                     DateModified = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
@@ -68,7 +68,7 @@ namespace CryptoExchange.Persistence.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Amount = table.Column<double>(type: "double precision", nullable: false),
                     CurrencyId = table.Column<int>(type: "integer", nullable: false),
-                    EmployeeId = table.Column<string>(type: "text", nullable: false),
+                    CustomerId = table.Column<string>(type: "text", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     CreatedBy = table.Column<string>(type: "text", nullable: true),
                     DateModified = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
@@ -90,8 +90,8 @@ namespace CryptoExchange.Persistence.Migrations
                 columns: new[] { "Id", "CreatedBy", "DateCreated", "DateModified", "ModifiedBy", "Name" },
                 values: new object[,]
                 {
-                    { 1, null, new DateTime(2024, 1, 26, 23, 50, 5, 996, DateTimeKind.Utc).AddTicks(1795), new DateTime(2024, 1, 26, 23, 50, 5, 996, DateTimeKind.Utc).AddTicks(1826), null, "USDT" },
-                    { 2, null, new DateTime(2024, 1, 26, 23, 50, 5, 996, DateTimeKind.Utc).AddTicks(1828), new DateTime(2024, 1, 26, 23, 50, 5, 996, DateTimeKind.Utc).AddTicks(1829), null, "BTC" }
+                    { 1, null, new DateTime(2024, 1, 27, 1, 21, 18, 462, DateTimeKind.Utc).AddTicks(5535), new DateTime(2024, 1, 27, 1, 21, 18, 462, DateTimeKind.Utc).AddTicks(5573), null, "USDT" },
+                    { 2, null, new DateTime(2024, 1, 27, 1, 21, 18, 462, DateTimeKind.Utc).AddTicks(5576), new DateTime(2024, 1, 27, 1, 21, 18, 462, DateTimeKind.Utc).AddTicks(5577), null, "BTC" }
                 });
 
             migrationBuilder.CreateIndex(

@@ -13,7 +13,6 @@ namespace CryptoExchange.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class CurrenciesController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -41,6 +40,7 @@ namespace CryptoExchange.Api.Controllers
 
         // POST api/<CurrenciesController>
         [HttpPost]
+        [Authorize]
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -52,6 +52,7 @@ namespace CryptoExchange.Api.Controllers
 
         // PUT api/<CurrenciesController>/5
         [HttpPut("{id}")]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(400)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -64,6 +65,7 @@ namespace CryptoExchange.Api.Controllers
 
         // DELETE api/<CurrenciesController>/5
         [HttpDelete("{id}")]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]

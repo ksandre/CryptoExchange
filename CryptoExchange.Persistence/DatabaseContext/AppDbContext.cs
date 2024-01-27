@@ -34,11 +34,11 @@ namespace CryptoExchange.Persistence.DatabaseContext
             foreach (var entry in base.ChangeTracker.Entries<BaseEntity>()
                 .Where(q => q.State == EntityState.Added || q.State == EntityState.Modified))
             {
-                entry.Entity.DateModified = DateTime.Now;
+                entry.Entity.DateModified = DateTime.Now.ToUniversalTime();
                 entry.Entity.ModifiedBy = _userService.UserId;
                 if (entry.State == EntityState.Added)
                 {
-                    entry.Entity.DateCreated = DateTime.Now;
+                    entry.Entity.DateCreated = DateTime.Now.ToUniversalTime();
                     entry.Entity.CreatedBy = _userService.UserId;
                 }
             }

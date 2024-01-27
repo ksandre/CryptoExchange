@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CryptoExchange.Application.Models.Identity
 {
-    public class Employee
+    public class Customer
     {
         public string Id { get; set; }
         public string Email { get; set; }

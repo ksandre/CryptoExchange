@@ -18,5 +18,5 @@ public class ExchangeRequest : BaseEntity
     public string? Comments { get; set; }
     public bool? Approved { get; set; }
     public bool Cancelled { get; set; }
-    public string RequestingEmployeeId { get; set; } = string.Empty;
+    public string RequestingCustomerId { get; set; } = string.Empty;
 }

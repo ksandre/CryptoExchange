@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CryptoExchange.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240126235006_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20240127012118_InitMigration")]
+    partial class InitMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -58,15 +58,15 @@ namespace CryptoExchange.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2024, 1, 26, 23, 50, 5, 996, DateTimeKind.Utc).AddTicks(1795),
-                            DateModified = new DateTime(2024, 1, 26, 23, 50, 5, 996, DateTimeKind.Utc).AddTicks(1826),
+                            DateCreated = new DateTime(2024, 1, 27, 1, 21, 18, 462, DateTimeKind.Utc).AddTicks(5535),
+                            DateModified = new DateTime(2024, 1, 27, 1, 21, 18, 462, DateTimeKind.Utc).AddTicks(5573),
                             Name = "USDT"
                         },
                         new
                         {
                             Id = 2,
-                            DateCreated = new DateTime(2024, 1, 26, 23, 50, 5, 996, DateTimeKind.Utc).AddTicks(1828),
-                            DateModified = new DateTime(2024, 1, 26, 23, 50, 5, 996, DateTimeKind.Utc).AddTicks(1829),
+                            DateCreated = new DateTime(2024, 1, 27, 1, 21, 18, 462, DateTimeKind.Utc).AddTicks(5576),
+                            DateModified = new DateTime(2024, 1, 27, 1, 21, 18, 462, DateTimeKind.Utc).AddTicks(5577),
                             Name = "BTC"
                         });
                 });
@@ -112,7 +112,7 @@ namespace CryptoExchange.Persistence.Migrations
                     b.Property<string>("ModifiedBy")
                         .HasColumnType("text");
 
-                    b.Property<string>("RequestingEmployeeId")
+                    b.Property<string>("RequestingCustomerId")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -140,15 +140,15 @@ namespace CryptoExchange.Persistence.Migrations
                     b.Property<int>("CurrencyId")
                         .HasColumnType("integer");
 
+                    b.Property<string>("CustomerId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<DateTime?>("DateCreated")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<DateTime?>("DateModified")
                         .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("EmployeeId")
-                        .IsRequired()
-                        .HasColumnType("text");
 
                     b.Property<string>("ModifiedBy")
                         .HasColumnType("text");

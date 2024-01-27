@@ -43,11 +43,11 @@ namespace CryptoExchange.Application.Features.ExchangeRequest.Commands.CreateExc
             if (validationResult.Errors.Any())
                 throw new BadRequestException("Invalid Exchange Request", validationResult);
 
-            // Get requesting employee's id
-            var employeeId = _userService.UserId;
+            // Get requesting customer's id
+            var customerId = _userService.UserId;
 
-            // Check on employee's allocation
-            var order = await _ordersRepository.GetUserOrders(employeeId, request.CurrencyId);
+            // Check on customer's allocation
+            var order = await _ordersRepository.GetUserOrders(customerId, request.CurrencyId);
 
             // if orders aren't enough, return validation error with message
             if (order is null)
@@ -67,7 +67,7 @@ namespace CryptoExchange.Application.Features.ExchangeRequest.Commands.CreateExc
 
             // Create leave request
             var exchangeRequest = _mapper.Map<Domain.ExchangeRequest>(request);
-            exchangeRequest.RequestingEmployeeId = employeeId;
+            exchangeRequest.RequestingCustomerId = customerId;
             exchangeRequest.DateRequested = DateTime.Now;
             await _exchangeRequestRepository.CreateAsync(exchangeRequest);
 

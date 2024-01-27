@@ -23,7 +23,7 @@ namespace CryptoExchange.Application.Features.Order.Queries.GetOrders
         {
             // To Do later
             // - Get records for specific user
-            // - Get orders per employee
+            // - Get orders per customer
 
             var allOrders = await _ordersRepository.GetOrdersWithDetails();
             var orders = _mapper.Map<List<OrderDto>>(allOrders);

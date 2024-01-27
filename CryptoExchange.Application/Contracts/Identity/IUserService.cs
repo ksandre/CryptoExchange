@@ -4,8 +4,8 @@ namespace CryptoExchange.Application.Contracts.Identity
 {
     public interface IUserService
     {
-        Task<List<Employee>> GetEmployees();
-        Task<Employee> GetEmployee(string userId);
+        Task<List<Customer>> GetCustomers();
+        Task<Customer> GetCustomer(string userId);
         public string UserId { get; }
     }
 }

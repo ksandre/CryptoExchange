@@ -75,7 +75,7 @@ namespace CryptoExchange.Identity.Services
 
             if (result.Succeeded)
             {
-                await _userManager.AddToRoleAsync(user, "Employee");
+                await _userManager.AddToRoleAsync(user, "Customer");
                 return new RegistrationResponse() { UserId = user.Id };
             }
             else

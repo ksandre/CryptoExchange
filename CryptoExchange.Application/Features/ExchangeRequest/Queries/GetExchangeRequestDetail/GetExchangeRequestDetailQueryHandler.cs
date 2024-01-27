@@ -31,8 +31,8 @@ namespace CryptoExchange.Application.Features.ExchangeRequest.Queries.GetExchang
             if (exchangeRequest == null)
                 throw new NotFoundException(nameof(ExchangeRequest), request.Id);
 
-            // Add Employee details as needed
-            exchangeRequest.Employee = await _userService.GetEmployee(exchangeRequest.RequestingEmployeeId);
+            // Add Customer details as needed
+            exchangeRequest.Customer = await _userService.GetCustomer(exchangeRequest.RequestingCustomerId);
 
             return exchangeRequest;
         }

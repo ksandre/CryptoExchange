@@ -14,5 +14,5 @@ public class Order: BaseEntity
     public Currency? Currency { get; set; }
     public int CurrencyId { get; set; }
 
-    public string EmployeeId { get; set; } = string.Empty;
+    public string CustomerId { get; set; } = string.Empty;
 }

@@ -24,22 +24,28 @@ namespace CryptoExchange.Identity.Services
         }
         public string UserId { get => _contextAccessor.HttpContext?.User?.FindFirstValue("uid"); }
 
-        public async Task<Employee> GetEmployee(string userId)
+        public async Task<Customer> GetCustomer(string userId)
         {
-            var employee = await _userManager.FindByIdAsync(userId);
-            return new Employee
+            var customer = await _userManager.FindByIdAsync(userId);
+
+            if (customer == null)
             {
-                Email = employee.Email,
-                Id = employee.Id,
-                Firstname = employee.FirstName,
-                Lastname = employee.LastName
+                return null;
+            }
+
+            return new Customer
+            {
+                Email = customer.Email,
+                Id = customer.Id,
+                Firstname = customer.FirstName,
+                Lastname = customer.LastName
             };
         }
 
-        public async Task<List<Employee>> GetEmployees()
+        public async Task<List<Customer>> GetCustomers()
         {
-            var employees = await _userManager.GetUsersInRoleAsync("Employee");
-            return employees.Select(q => new Employee
+            var customers = await _userManager.GetUsersInRoleAsync("Customer");
+            return customers.Select(q => new Customer
             {
                 Id = q.Id,
                 Email = q.Email,

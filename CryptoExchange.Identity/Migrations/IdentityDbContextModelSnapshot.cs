@@ -98,7 +98,7 @@ namespace CryptoExchange.Identity.Migrations
                         {
                             Id = "8e445865-a24d-4543-a6c6-9443d048cdb9",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4beba589-1804-48e5-99b9-127d0fa22bb2",
+                            ConcurrencyStamp = "b2cc5535-134d-41f4-8fc7-7897849c11cc",
                             Email = "admin@localhost.com",
                             EmailConfirmed = true,
                             FirstName = "System",
@@ -106,9 +106,9 @@ namespace CryptoExchange.Identity.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEGS1UKqlU08nCln6Pk1jwee3yDATu1mKFb4XLPD08RMbzSQO0QzoJm10X5g2oHG5Tw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKvgxzMTf4a3ocToKrtMkh+Jy95FH+Puow/d2mb9R9ykmqhmehzCVk9aBez2775KAg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "4d9056e5-0093-4ad8-8220-59962e7ee79a",
+                            SecurityStamp = "c3022e1f-8a42-4814-b0bc-368dd5df9ea5",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         },
@@ -116,7 +116,7 @@ namespace CryptoExchange.Identity.Migrations
                         {
                             Id = "9e224968-33e4-4652-b7b7-8574d048cdb9",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "404af486-09d8-41f1-a2e3-27bab4e2b8c2",
+                            ConcurrencyStamp = "26175879-24f9-4602-a687-c514650b0fe1",
                             Email = "user@localhost.com",
                             EmailConfirmed = true,
                             FirstName = "System",
@@ -124,9 +124,9 @@ namespace CryptoExchange.Identity.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@LOCALHOST.COM",
                             NormalizedUserName = "USER@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAED8st2NAxoqVsY+CtGtilNkCgHFVt36XjJO54xiBwJDTU1W1RDBacGvUBp1t6W4/HQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBbgPCSrC8DOTT56u2U4omiZLh8IRahDnZy9ZdzHOQwDj60JhG8vCxZU2/aNwYTBVw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "5e564248-bdff-476c-ab24-a3178125ae72",
+                            SecurityStamp = "22a7e455-9795-428b-b26e-86b018d2693f",
                             TwoFactorEnabled = false,
                             UserName = "user@localhost.com"
                         });
@@ -161,8 +161,8 @@ namespace CryptoExchange.Identity.Migrations
                         new
                         {
                             Id = "cac43a6e-f7bb-4448-baaf-1add431ccbbf",
-                            Name = "Employee",
-                            NormalizedName = "EMPLOYEE"
+                            Name = "Customer",
+                            NormalizedName = "CUSTOMER"
                         },
                         new
                         {

@@ -17,6 +17,12 @@ namespace CryptoExchange.Persistence.Repositories
             
         }
 
+        public async Task AddOrder(Order order)
+        {
+            await _context.AddAsync(order);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task AddOrders(List<Order> orders)
         {
             await _context.AddRangeAsync(orders);
@@ -26,7 +32,7 @@ namespace CryptoExchange.Persistence.Repositories
         public async Task<bool> OrderExists(string userId, int currencyId)
         {
             return await _context.Orders
-                .AnyAsync(q => q.EmployeeId == userId && q.CurrencyId == currencyId);
+                .AnyAsync(q => q.CustomerId == userId && q.CurrencyId == currencyId);
         }
 
         public async Task<List<Order>> GetOrdersWithDetails()
@@ -41,7 +47,7 @@ namespace CryptoExchange.Persistence.Repositories
         public async Task<List<Order>> GetOrdersWithDetails(string userId)
         {
             var orders = await _context.Orders
-                .Where(q => q.EmployeeId == userId)
+                .Where(q => q.CustomerId == userId)
                .Include(q => q.Currency)
                .ToListAsync();
 
@@ -60,7 +66,7 @@ namespace CryptoExchange.Persistence.Repositories
         public async Task<Order> GetUserOrders(string userId, int currencyId)
         {
             return await _context.Orders
-                .FirstOrDefaultAsync(q => q.EmployeeId == userId && q.CurrencyId == currencyId);
+                .FirstOrDefaultAsync(q => q.CustomerId == userId && q.CurrencyId == currencyId);
         }
     }
 }

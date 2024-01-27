@@ -11,8 +11,8 @@ namespace CryptoExchange.Application.Features.ExchangeRequest.Queries.GetExchang
     public class ExchangeRequestDetailsDto
     {
         public int Id { get; set; }
-        public Employee Employee { get; set; }
-        public string RequestingEmployeeId { get; set; }
+        public Customer Customer { get; set; }
+        public string RequestingCustomerId { get; set; }
         public CurrencyDto Currency { get; set; }
         public int CurrencyId { get; set; }
         public DateTime DateRequested { get; set; }

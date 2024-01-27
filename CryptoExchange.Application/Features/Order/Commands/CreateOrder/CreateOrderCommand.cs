@@ -11,5 +11,6 @@ namespace CryptoExchange.Application.Features.Order.Commands.CreateOrder
     {
         public int Amount { get; set; }
         public int CurrencyId { get; set; }
+        public string CustomerId { get; set; } = string.Empty;
     }
 }
