@@ -63,7 +63,7 @@ namespace CryptoExchange.Persistence.Repositories
             return orders;
         }
 
-        public async Task<Order> GetUserOrders(string userId, int currencyId)
+        public async Task<Order> GetUserOrder(string userId, int currencyId)
         {
             return await _context.Orders
                 .FirstOrDefaultAsync(q => q.CustomerId == userId && q.CurrencyId == currencyId);

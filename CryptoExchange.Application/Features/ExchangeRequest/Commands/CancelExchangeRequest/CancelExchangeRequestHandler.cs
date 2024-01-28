@@ -31,19 +31,10 @@ namespace CryptoExchange.Application.Features.ExchangeRequest.Commands.CancelExc
             await _exchangeRequestRepository.UpdateAsync(exchangeRequest);
 
             // if any of exchange requests already approved, re-evaluate the customer's orders for the currency
-            if (exchangeRequest.Approved == true)
-            {
-                double amountRequested = exchangeRequest.CurrencyToExchangeAmount;
-                var firstUserOrder = await _ordersRepository.GetUserOrders(exchangeRequest.RequestedCustomerId, exchangeRequest.CurrencyToExchangeId);
-                firstUserOrder.Amount += amountRequested;
-
-                double amountRecieved = exchangeRequest.CurrencyForExchangeAmount;
-                var secondUserOrder = await _ordersRepository.GetUserOrders(exchangeRequest.ReceivedCustomerId, exchangeRequest.CurrencyForExchangeId);
-                secondUserOrder.Amount += amountRecieved;
-
-                await _ordersRepository.UpdateAsync(firstUserOrder);
-                await _ordersRepository.UpdateAsync(secondUserOrder);
-            }
+            //if (exchangeRequest.Approved == true)
+            //{
+            //    double amountRequested = exchangeRequest.CurrencyToExchangeAmount;
+            //}
 
             return Unit.Value;
         }

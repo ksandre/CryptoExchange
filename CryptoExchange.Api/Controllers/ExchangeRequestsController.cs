@@ -71,7 +71,7 @@ namespace CryptoExchange.Api.Controllers
         }
 
         [HttpPost("[action]")]
-        public async Task<ActionResult> ApproveTwoExchangeRequests(ApproveTwoExchangeRequestsCommand approveExchangeRequest)
+        public async Task<ActionResult> ApproveTwoExchangeRequests(ApproveRelatedExchangeRequestsCommand approveExchangeRequest)
         {
             var response = await _mediator.Send(approveExchangeRequest);
             return CreatedAtAction(nameof(Get), new { id = response });

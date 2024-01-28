@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace CryptoExchange.Application.Features.ExchangeRequest.Commands.ApproveExchangeRequest
 {
-    public class ApproveTwoExchangeRequestsValidator : AbstractValidator<ApproveTwoExchangeRequestsCommand>
+    public class ApproveRelatedExchangeRequestsValidator : AbstractValidator<ApproveRelatedExchangeRequestsCommand>
     {
-        public ApproveTwoExchangeRequestsValidator()
+        public ApproveRelatedExchangeRequestsValidator()
         {
             RuleFor(p => p.exchangeRequestId1)
             .NotNull()

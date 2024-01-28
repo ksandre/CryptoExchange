@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CryptoExchange.Application.Features.ExchangeRequest.Commands.ApproveExchangeRequest
 {
-    public class ApproveTwoExchangeRequestsCommand : IRequest<Unit>
+    public class ApproveRelatedExchangeRequestsCommand : IRequest<Unit>
     {
         public int exchangeRequestId1 { get; set; }
         public int exchangeRequestId2 { get; set; }

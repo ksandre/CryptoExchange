@@ -15,6 +15,6 @@ namespace CryptoExchange.Application.Contracts.Persistence
         Task<bool> OrderExists(string userId, int currencyId);
         Task AddOrder(Order order);
         Task AddOrders(List<Order> orders);
-        Task<Order> GetUserOrders(string userId, int currencyId);
+        Task<Order> GetUserOrder(string userId, int currencyId);
     }
 }

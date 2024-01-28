@@ -51,9 +51,9 @@ namespace CryptoExchange.Application.Features.ExchangeRequest.Commands.CreateExc
             var customerId = _userService.UserId;
 
             // Check customer's orders
-            var order = await _ordersRepository.GetUserOrders(customerId, request.CurrencyToExchangeId);
+            var order = await _ordersRepository.GetUserOrder(customerId, request.CurrencyToExchangeId);
 
-            var orderForExchange = await _ordersRepository.GetUserOrders(customerId, request.CurrencyForExchangeId);
+            var orderForExchange = await _ordersRepository.GetUserOrder(customerId, request.CurrencyForExchangeId);
             if(orderForExchange == null)
             {
                 await _mediator.Send(new CreateOrderCommand { 
