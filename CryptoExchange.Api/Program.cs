@@ -4,6 +4,7 @@ using CryptoExchange.Persistence;
 using CryptoExchange.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi.Models;
+using CryptoExchange.Api.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -53,6 +54,8 @@ builder.Services.AddSwaggerGen(
     }
 );
 
+builder.Services.AddSignalR();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -61,6 +64,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.MapHub<RelatedExchangeRequestsHub>("RelatedExchangeRequests");
 
 app.UseHttpsRedirection();
 
