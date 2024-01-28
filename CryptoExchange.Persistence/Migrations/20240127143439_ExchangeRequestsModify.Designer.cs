@@ -3,6 +3,7 @@ using System;
 using CryptoExchange.Persistence.DatabaseContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CryptoExchange.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240127143439_ExchangeRequestsModify")]
+    partial class ExchangeRequestsModify
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,15 +58,15 @@ namespace CryptoExchange.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2024, 1, 27, 17, 57, 45, 733, DateTimeKind.Utc).AddTicks(9759),
-                            DateModified = new DateTime(2024, 1, 27, 17, 57, 45, 733, DateTimeKind.Utc).AddTicks(9794),
+                            DateCreated = new DateTime(2024, 1, 27, 14, 34, 39, 558, DateTimeKind.Utc).AddTicks(9652),
+                            DateModified = new DateTime(2024, 1, 27, 14, 34, 39, 558, DateTimeKind.Utc).AddTicks(9681),
                             Name = "USDT"
                         },
                         new
                         {
                             Id = 2,
-                            DateCreated = new DateTime(2024, 1, 27, 17, 57, 45, 733, DateTimeKind.Utc).AddTicks(9796),
-                            DateModified = new DateTime(2024, 1, 27, 17, 57, 45, 733, DateTimeKind.Utc).AddTicks(9797),
+                            DateCreated = new DateTime(2024, 1, 27, 14, 34, 39, 558, DateTimeKind.Utc).AddTicks(9683),
+                            DateModified = new DateTime(2024, 1, 27, 14, 34, 39, 558, DateTimeKind.Utc).AddTicks(9683),
                             Name = "BTC"
                         });
                 });
@@ -112,11 +115,7 @@ namespace CryptoExchange.Persistence.Migrations
                     b.Property<string>("ModifiedBy")
                         .HasColumnType("text");
 
-                    b.Property<string>("ReceivedCustomerId")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("RequestedCustomerId")
+                    b.Property<string>("RequestingCustomerId")
                         .IsRequired()
                         .HasColumnType("text");
 

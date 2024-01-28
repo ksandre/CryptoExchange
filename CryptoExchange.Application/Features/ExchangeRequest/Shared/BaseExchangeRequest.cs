@@ -9,6 +9,9 @@ namespace CryptoExchange.Application.Features.ExchangeRequest.Shared
     public abstract class BaseExchangeRequest
     {
         public DateTime DateRequested { get; set; }
-        public int CurrencyId { get; set; }
+        public int CurrencyToExchangeId { get; set; }
+        public double CurrencyToExchangeAmount { get; set; }
+        public int CurrencyForExchangeId { get; set; }
+        public double CurrencyForExchangeAmount { get; set; }
     }
 }

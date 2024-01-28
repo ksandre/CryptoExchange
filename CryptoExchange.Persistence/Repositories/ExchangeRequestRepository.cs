@@ -20,8 +20,9 @@ namespace CryptoExchange.Persistence.Repositories
         public async Task<List<ExchangeRequest>> GetExchangeRequestsWithDetails()
         {
             var exchangeRequests = await _context.ExchangeRequests
-                .Where(q => !string.IsNullOrEmpty(q.RequestingCustomerId))
-                .Include(q => q.Currency)
+                .Where(q => !string.IsNullOrEmpty(q.RequestedCustomerId))
+                .Include(q => q.CurrencyToExchange)
+                .Include(q => q.CurrencyForExchange)
                 .ToListAsync();
 
             return exchangeRequests;
@@ -30,8 +31,9 @@ namespace CryptoExchange.Persistence.Repositories
         public async Task<List<ExchangeRequest>> GetExchangeRequestsWithDetails(string userId)
         {
             var exchangeRequests = await _context.ExchangeRequests
-                .Where(q => q.RequestingCustomerId == userId)
-                .Include(q => q.Currency)
+                .Where(q => q.RequestedCustomerId == userId)
+                .Include(q => q.CurrencyToExchange)
+                .Include(q => q.CurrencyForExchange)
                 .ToListAsync();
 
             return exchangeRequests;
@@ -40,8 +42,61 @@ namespace CryptoExchange.Persistence.Repositories
         public async Task<ExchangeRequest> GetExchangeRequestWithDetails(int id)
         {
             var exchangeRequest = await _context.ExchangeRequests
-                .Include(q => q.Currency)
+                .Include(q => q.CurrencyToExchange)
+                .Include(q => q.CurrencyForExchange)
                 .FirstOrDefaultAsync(q => q.Id == id);
+
+            return exchangeRequest;
+        }
+
+        public async Task<List<ExchangeRequest>> GetExchangeRequestByUserIds(string userId1,string userId2)
+        {
+            var exchangeRequests = await _context.ExchangeRequests
+                .Where(q => q.RequestedCustomerId == userId1)
+                .Where(q => q.ReceivedCustomerId == userId2)
+                .Include(q => q.CurrencyToExchange)
+                .Include(q => q.CurrencyForExchange)
+                .ToListAsync();
+
+            return exchangeRequests;
+        }
+
+        public async Task<List<ExchangeRequest>> GetRelatedExchangeRequests(
+            double currencyToExchangeAmount,
+            double currencyForExchangeAmount,
+            int currencyToExchangeId,
+            int currencyForExchangeId
+            )
+        {
+            // We are getting related first request.
+
+            var exchangeRequest = await _context.ExchangeRequests
+                .Where(q => (q.CurrencyToExchangeId == currencyToExchangeId && q.CurrencyForExchangeId == currencyForExchangeId) || (q.CurrencyToExchangeId == currencyForExchangeId && q.CurrencyForExchangeId == currencyToExchangeId))
+                .Where(q => (q.CurrencyToExchangeAmount == currencyToExchangeAmount && q.CurrencyForExchangeAmount == currencyForExchangeAmount) || (q.CurrencyToExchangeAmount == currencyForExchangeAmount && q.CurrencyForExchangeAmount == currencyToExchangeAmount))
+                .Include(q => q.CurrencyToExchange)
+                .Include(q => q.CurrencyForExchange)
+                .ToListAsync();
+
+            return exchangeRequest;
+        }
+
+        public async Task<ExchangeRequest> GetRelatedExchangeRequestByUserIdsAndCurrencies(
+            string userId1,
+            string userId2,
+            int currencyToExchangeId,
+            int currencyForExchangeId
+            )
+        {
+            // We are getting related first second users request.
+
+            var exchangeRequest = await _context.ExchangeRequests
+                .Where(q => q.RequestedCustomerId == userId2)
+                .Where(q => q.ReceivedCustomerId == userId1)
+                .Where(q => q.CurrencyToExchangeId == currencyToExchangeId)
+                .Where(q => q.CurrencyForExchangeId == currencyForExchangeId)
+                .Include(q => q.CurrencyToExchange)
+                .Include(q => q.CurrencyForExchange)
+                .FirstOrDefaultAsync();
 
             return exchangeRequest;
         }

@@ -12,5 +12,8 @@ namespace CryptoExchange.Application.Contracts.Persistence
         Task<ExchangeRequest> GetExchangeRequestWithDetails(int id);
         Task<List<ExchangeRequest>> GetExchangeRequestsWithDetails();
         Task<List<ExchangeRequest>> GetExchangeRequestsWithDetails(string userId);
+        Task<List<ExchangeRequest>> GetExchangeRequestByUserIds(string userId1,string userId2);
+        Task<List<ExchangeRequest>> GetRelatedExchangeRequests(double currencyToExchangeAmount, double currencyForExchangeAmount, int currencyToExchangeId, int currencyForExchangeId);
+        Task<ExchangeRequest> GetRelatedExchangeRequestByUserIdsAndCurrencies(string userId1, string userId2, int currencyToExchangeId, int currencyForExchangeId);
     }
 }

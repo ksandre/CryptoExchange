@@ -14,5 +14,7 @@ namespace CryptoExchange.Application.Features.Order.Queries.GetOrderDetails
 
         public CurrencyDto? Currency { get; set; }
         public int CurrencyId { get; set; }
+
+        public string CustomerId { get; set; } = string.Empty;
     }
 }

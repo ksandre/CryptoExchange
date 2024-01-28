@@ -29,8 +29,8 @@ namespace CryptoExchange.Application.Features.ExchangeRequest.Commands.UpdateExc
 
         private async Task<bool> ExchangeRequestMustExist(int id, CancellationToken arg2)
         {
-            var leaveAllocation = await _exchangeRequestRepository.GetByIdAsync(id);
-            return leaveAllocation != null;
+            var exchangeRequest = await _exchangeRequestRepository.GetByIdAsync(id);
+            return exchangeRequest != null;
         }
     }
 }

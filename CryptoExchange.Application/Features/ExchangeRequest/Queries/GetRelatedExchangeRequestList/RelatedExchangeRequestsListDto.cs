@@ -6,12 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CryptoExchange.Application.Features.ExchangeRequest.Queries.GetExchangeRequestDetail
+namespace CryptoExchange.Application.Features.ExchangeRequest.Queries.GetRelatedExchangeRequestList
 {
-    public class ExchangeRequestDetailsDto
+    public class RelatedExchangeRequestsListDto
     {
         public int Id { get; set; }
-
         public Customer RequestedCustomer { get; set; }
         public string RequestedCustomerId { get; set; }
         public CurrencyDto CurrencyToExchange { get; set; }
@@ -25,9 +24,7 @@ namespace CryptoExchange.Application.Features.ExchangeRequest.Queries.GetExchang
         public double CurrencyForExchangeAmount { get; set; }
 
         public DateTime DateRequested { get; set; }
-        public string Comments { get; set; }
-        public DateTime? DateActioned { get; set; }
         public bool? Approved { get; set; }
-        public bool Cancelled { get; set; }
+        public bool? Cancelled { get; set; }
     }
 }

@@ -32,7 +32,8 @@ namespace CryptoExchange.Application.Features.ExchangeRequest.Queries.GetExchang
                 throw new NotFoundException(nameof(ExchangeRequest), request.Id);
 
             // Add Customer details as needed
-            exchangeRequest.Customer = await _userService.GetCustomer(exchangeRequest.RequestingCustomerId);
+            exchangeRequest.RequestedCustomer = await _userService.GetCustomer(exchangeRequest.RequestedCustomerId);
+            exchangeRequest.ReceivedCustomer = await _userService.GetCustomer(exchangeRequest.ReceivedCustomerId);
 
             return exchangeRequest;
         }

@@ -7,8 +7,5 @@ using System.Threading.Tasks;
 
 namespace CryptoExchange.Application.Features.ExchangeRequest.Queries.GetExchangeRequestList
 {
-    public class GetExchangeRequestListQuery : IRequest<List<ExchangeRequestListDto>>
-    {
-        public bool IsLoggedInUser { get; set; }
-    }
+    public record GetExchangeRequestListQuery : IRequest<List<ExchangeRequestListDto>>;
 }

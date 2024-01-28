@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CryptoExchange.Application.Features.ExchangeRequest.Queries.GetExchangeRequestList
 {
-    internal class GetExchangeRequestListQueryHandler : IRequestHandler<GetExchangeRequestListQuery, List<ExchangeRequestListDto>>
+    public class GetExchangeRequestListQueryHandler : IRequestHandler<GetExchangeRequestListQuery, List<ExchangeRequestListDto>>
     {
         private readonly IExchangeRequestRepository _exchangeRequestRepository;
         private readonly IMapper _mapper;
@@ -28,27 +28,12 @@ namespace CryptoExchange.Application.Features.ExchangeRequest.Queries.GetExchang
             var exchangeRequests = new List<Domain.ExchangeRequest>();
             var requests = new List<ExchangeRequestListDto>();
 
-            // Check if it is logged in customer
-            if (request.IsLoggedInUser)
+            exchangeRequests = await _exchangeRequestRepository.GetExchangeRequestsWithDetails();
+            requests = _mapper.Map<List<ExchangeRequestListDto>>(exchangeRequests);
+            foreach (var req in requests)
             {
-                var userId = _userService.UserId;
-                exchangeRequests = await _exchangeRequestRepository.GetExchangeRequestsWithDetails(userId);
-
-                var customer = await _userService.GetCustomer(userId);
-                requests = _mapper.Map<List<ExchangeRequestListDto>>(exchangeRequests);
-                foreach (var req in requests)
-                {
-                    req.Customer = customer;
-                }
-            }
-            else
-            {
-                exchangeRequests = await _exchangeRequestRepository.GetExchangeRequestsWithDetails();
-                requests = _mapper.Map<List<ExchangeRequestListDto>>(exchangeRequests);
-                foreach (var req in requests)
-                {
-                    req.Customer = await _userService.GetCustomer(req.RequestingCustomerId);
-                }
+                req.RequestedCustomer = await _userService.GetCustomer(req.RequestedCustomerId);
+                req.ReceivedCustomer = await _userService.GetCustomer(req.ReceivedCustomerId);
             }
 
             return requests;

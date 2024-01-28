@@ -23,7 +23,7 @@ namespace CryptoExchange.Api.Controllers
 
         // GET: api/<OrdersController>
         [HttpGet]
-        public async Task<ActionResult<List<OrderDto>>> Get(bool isLoggedInUser = false)
+        public async Task<ActionResult<List<OrderDto>>> Get()
         {
             var orders = await _mediator.Send(new GetOrderListQuery());
             return Ok(orders);

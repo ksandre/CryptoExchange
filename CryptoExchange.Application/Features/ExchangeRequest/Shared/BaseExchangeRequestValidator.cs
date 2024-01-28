@@ -17,18 +17,27 @@ namespace CryptoExchange.Application.Features.ExchangeRequest.Shared
             _currencyRepository = currencyRepository;
 
             RuleFor(p => p.DateRequested)
-                .GreaterThan(p => DateTime.Now).WithMessage("{PropertyName} must be after {ComparisonValue}");
+                .LessThanOrEqualTo(p => DateTime.Now).WithMessage("{PropertyName} must be after or same as {ComparisonValue}");
 
-            RuleFor(p => p.CurrencyId)
+            RuleFor(p => p.CurrencyToExchangeId)
                 .GreaterThan(0)
                 .MustAsync(CurrencyMustExist)
                 .WithMessage("{PropertyName} does not exist.");
+            RuleFor(p => p.CurrencyToExchangeAmount)
+                .GreaterThan(0).WithMessage("{PropertyName} must be greater than 0");
+
+            RuleFor(p => p.CurrencyForExchangeId)
+                .GreaterThan(0)
+                .MustAsync(CurrencyMustExist)
+                .WithMessage("{PropertyName} does not exist.");
+            RuleFor(p => p.CurrencyForExchangeAmount)
+                .GreaterThan(0).WithMessage("{PropertyName} must be greater than 0");
         }
 
         private async Task<bool> CurrencyMustExist(int id, CancellationToken arg2)
         {
-            var leaveType = await _currencyRepository.GetByIdAsync(id);
-            return leaveType != null;
+            var currency = await _currencyRepository.GetByIdAsync(id);
+            return currency != null;
         }
     }
 }

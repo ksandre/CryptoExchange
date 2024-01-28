@@ -3,6 +3,7 @@ using CryptoExchange.Application.Features.ExchangeRequest.Commands.CreateExchang
 using CryptoExchange.Application.Features.ExchangeRequest.Commands.UpdateExchangeRequest;
 using CryptoExchange.Application.Features.ExchangeRequest.Queries.GetExchangeRequestDetail;
 using CryptoExchange.Application.Features.ExchangeRequest.Queries.GetExchangeRequestList;
+using CryptoExchange.Application.Features.ExchangeRequest.Queries.GetRelatedExchangeRequestList;
 using CryptoExchange.Domain;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace CryptoExchange.Application.MappingProfiles
         {
             CreateMap<ExchangeRequestListDto, ExchangeRequest>().ReverseMap();
             CreateMap<ExchangeRequestDetailsDto, ExchangeRequest>().ReverseMap();
+            CreateMap<RelatedExchangeRequestsListDto, ExchangeRequest>().ReverseMap();
             CreateMap<CreateExchangeRequestCommand, ExchangeRequest>();
             CreateMap<UpdateExchangeRequestCommand, ExchangeRequest>();
         }

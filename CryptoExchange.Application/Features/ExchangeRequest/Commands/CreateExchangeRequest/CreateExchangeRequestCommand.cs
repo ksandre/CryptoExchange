@@ -10,7 +10,6 @@ namespace CryptoExchange.Application.Features.ExchangeRequest.Commands.CreateExc
 {
     public class CreateExchangeRequestCommand : BaseExchangeRequest, IRequest<Unit>
     {
-        public double Amount { get; set; }
         public string Comments { get; set; } = string.Empty;
     }
 }
