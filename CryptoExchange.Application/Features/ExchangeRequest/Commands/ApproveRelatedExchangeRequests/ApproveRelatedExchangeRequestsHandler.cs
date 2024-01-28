@@ -64,6 +64,9 @@ namespace CryptoExchange.Application.Features.ExchangeRequest.Commands.ApproveEx
             var userBuyCurrencyOrder = await _ordersRepository
                     .GetUserOrder(exchangeRequest.RequestedCustomerId, exchangeRequest.CurrencyForExchangeId);
 
+            if (userSellCurrencyOrder.Amount - userSellAmount < 0)
+                throw new BadRequestException($"UserId {exchangeRequest.RequestedCustomerId} not have enough amount of currency");
+
             userSellCurrencyOrder.Amount -= userSellAmount;
             userBuyCurrencyOrder.Amount += userBuyAmount;
 

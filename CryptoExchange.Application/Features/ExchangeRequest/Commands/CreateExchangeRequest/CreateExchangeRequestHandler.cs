@@ -67,7 +67,7 @@ namespace CryptoExchange.Application.Features.ExchangeRequest.Commands.CreateExc
             if (order is null)
             {
                 validationResult.Errors.Add(new FluentValidation.Results.ValidationFailure(nameof(request.CurrencyToExchangeId),
-                    "You do not have any allocations for this currency type."));
+                    "You do not have any order for this currency type."));
                 throw new BadRequestException("Invalid Exchange Request", validationResult);
             }
 
