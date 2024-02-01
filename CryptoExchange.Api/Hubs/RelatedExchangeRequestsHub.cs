@@ -47,8 +47,8 @@ public interface INotificationClient
 // {"protocol":"json","version":1}
 
 //{
-//    "arguments" : ["Test Message"],
+//    "arguments" : [7,2,1,2],
 //    "invocationId" : "0",
-//    "target" : "SendMessage",
+//    "target" : "SendMessageToCaller",
 //    "type" : 1
 //}
