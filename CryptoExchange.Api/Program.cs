@@ -66,6 +66,7 @@ var app = builder.Build();
 //}
 
 app.MapHub<RelatedExchangeRequestsHub>("RelatedExchangeRequests");
+app.UseCors(options => options.WithOrigins("http://localhost:3000").AllowAnyHeader().WithMethods("GET","POST").AllowCredentials());
 
 app.UseHttpsRedirection();
 

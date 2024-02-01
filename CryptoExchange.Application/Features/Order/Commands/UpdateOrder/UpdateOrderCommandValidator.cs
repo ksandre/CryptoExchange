@@ -23,12 +23,12 @@ namespace CryptoExchange.Application.Features.Order.Commands.UpdateOrder
 
             RuleFor(p => p.CurrencyId)
                 .GreaterThan(0)
-                .MustAsync(OrderMustExist)
+                .MustAsync(CurrencyMustExist)
                 .WithMessage("{PropertyName} does not exist.");
 
             RuleFor(p => p.Id)
                 .NotNull()
-                .MustAsync(CurrencyMustExist)
+                .MustAsync(OrderMustExist)
                 .WithMessage("{PropertyName} must be present");
         }
 
