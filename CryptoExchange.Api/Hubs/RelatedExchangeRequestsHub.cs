@@ -1,19 +1,47 @@
-﻿using Microsoft.AspNetCore.SignalR;
+﻿using CryptoExchange.Application.Features.ExchangeRequest.Queries.GetRelatedExchangeRequestList;
+using MediatR;
+using Microsoft.AspNetCore.SignalR;
 
 namespace CryptoExchange.Api.Hubs
 {
     public sealed class RelatedExchangeRequestsHub : Hub
     {
-        public override async Task OnConnectedAsync()
+        private readonly IMediator _mediator;
+
+        public RelatedExchangeRequestsHub(IMediator mediator)
         {
-            await Clients.All.SendAsync("ReceiveMessage", $"{Context.ConnectionId} has joined");
+           _mediator = mediator;
         }
 
-        public async Task SendMessage(string message)
+        public override async Task OnConnectedAsync()
         {
-            await Clients.All.SendAsync("ReceiveMessage", $"{Context.ConnectionId} said: {message}");
+            await base.OnConnectedAsync();
+        }
+
+        public async Task<Task> SendMessageToCaller(
+            double currencyToExchangeAmount, 
+            double currencyForExchangeAmount, 
+            int currencyToExchangeId,
+            int currencyForExchangeId
+            )
+        {
+            var exchangeRequests = await _mediator.Send(new GetRelatedExchangeRequestsListQuery
+            {
+                CurrencyToExchangeAmount = currencyToExchangeAmount,
+                CurrencyForExchangeAmount = currencyForExchangeAmount,
+                CurrencyToExchangeId = currencyToExchangeId,
+                CurrencyForExchangeId = currencyForExchangeId
+            });
+
+            return Clients.Caller.SendAsync("ReceiveMessage", exchangeRequests);
         }
     }
+}
+
+public interface INotificationClient
+{
+    Task ReceiveNotification(string message);
+    Task SendMessageToCaller(string message);
 }
 
 // {"protocol":"json","version":1}
