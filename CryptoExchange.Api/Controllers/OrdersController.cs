@@ -4,6 +4,7 @@ using CryptoExchange.Application.Features.Order.Commands.UpdateOrder;
 using CryptoExchange.Application.Features.Order.Queries.GetOrderDetails;
 using CryptoExchange.Application.Features.Order.Queries.GetOrders;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -39,6 +40,7 @@ namespace CryptoExchange.Api.Controllers
 
         // POST api/<OrdersController>
         [HttpPost]
+        [Authorize]
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -50,6 +52,7 @@ namespace CryptoExchange.Api.Controllers
 
         // PUT api/<OrdersController>/5
         [HttpPut]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(400)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -62,6 +65,7 @@ namespace CryptoExchange.Api.Controllers
 
         // DELETE api/<OrdersController>/5
         [HttpDelete("{id}")]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
